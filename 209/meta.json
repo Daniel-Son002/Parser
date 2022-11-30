@@ -1,0 +1,58 @@
+{
+    "algorithm": {
+        "command": null,
+        "id": 6,
+        "name": "Embeddings from Language Models (ELMo)",
+        "tool": "https://github.com/ltgoslo/simple_elmo_training",
+        "url": "https://allennlp.org/elmo",
+        "version": null
+    },
+    "contents": [
+        {
+            "filename": "options.json",
+            "format": "json"
+        },
+        {
+            "filename": "meta.json",
+            "format": "json"
+        },
+        {
+            "filename": "model.hdf5",
+            "format": "data"
+        },
+        {
+            "filename": "vocab.txt",
+            "format": "text"
+        }
+    ],
+    "corpus": [
+        {
+            "NER": true,
+            "case preserved": false,
+            "description": "English Wikipedia Dump of October 2019",
+            "id": 116,
+            "language": "eng",
+            "lemmatized": true,
+            "public": true,
+            "stop words removal": "punctuation",
+            "tagger": "UDPipe 1.2",
+            "tagset": null,
+            "tokens": 2849749448,
+            "tool": "https://github.com/RaRe-Technologies/gensim/blob/master/gensim/scripts/segment_wiki.py",
+            "url": "https://dumps.wikimedia.org/"
+        }
+    ],
+    "creators": [
+        {
+            "email": "andreku@ifi.uio.no",
+            "name": "Andrey Kutuzov"
+        }
+    ],
+    "dimensions": 1024,
+    "documentation": [
+        "https://github.com/ltgoslo/simple_elmo"
+    ],
+    "handle": "http://vectors.nlpl.eu/repository/20/209.zip",
+    "id": 209,
+    "iterations": 3
+}
