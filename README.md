@@ -13,3 +13,5 @@ To run the word-to-vector task, run the command `python3 test.py`.
 ## Sentiment Analysis Task (complex task):
 
 To run the sentiment analysis task simply change directories to the sentiment analysis directory and run `python3 main.py`. Within this file, you can change the `batch_size` and `num_epochs` in order to see how performance varies. In the given form with 20 epochs, we expect to see training accuracy of approximately 79% and a test accuracy of approximately 37%. In addition, given the input words, the output should be 4 being that the movie was enjoyed.
+
+This code was created following this [tutorial](http://www.realworldnlpbook.com/blog/improving-sentiment-analyzer-using-elmo.html). 
