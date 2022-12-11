@@ -1,3 +1,5 @@
+# code created following http://www.realworldnlpbook.com/blog/improving-sentiment-analyzer-using-elmo.html
+
 import numpy as np
 import torch
 import torch.optim as optim
@@ -20,8 +22,6 @@ HIDDEN_DIM = 128
 from itertools import chain
     
 def main():
-    # In order to use ELMo, each word in a sentence needs to be indexed with
-    # an array of character IDs.
     elmo_token_indexer = ELMoTokenCharactersIndexer()
     reader = StanfordSentimentTreeBankDatasetReader(
         token_indexers={'tokens': elmo_token_indexer})
@@ -29,18 +29,6 @@ def main():
     train_dataset = list(reader.read("\stanfordSentimentTreebank\trees\train.txt"))
     dev_dataset = list(reader.read("\stanfordSentimentTreebank\trees\dev.txt"))
 
-    # Initialize the ELMo-based token embedder using a pre-trained file.
-    # This takes a while if you run this script for the first time
-
-    # Original
-    # options_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_options.json"
-    # weight_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x4096_512_2048cnn_2xhighway/elmo_2x4096_512_2048cnn_2xhighway_weights.hdf5"
-
-    # Medium
-    # options_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x2048_256_2048cnn_1xhighway/elmo_2x2048_256_2048cnn_1xhighway_options.json"
-    # weight_file = "https://s3-us-west-2.amazonaws.com/allennlp/models/elmo/2x2048_256_2048cnn_1xhighway/elmo_2x2048_256_2048cnn_1xhighway_weights.hdf5"
-
-    # Use the 'Small' pre-trained model
     options_file = ('https://s3-us-west-2.amazonaws.com/allennlp/models/elmo'
                     '/2x1024_128_2048cnn_1xhighway/elmo_2x1024_128_2048cnn_1xhighway_options.json')
     weight_file = ('https://s3-us-west-2.amazonaws.com/allennlp/models/elmo'
@@ -53,10 +41,8 @@ def main():
     # vocab = Vocabulary.from_instances(chain(train_dataset , dev_dataset),
     #                                   min_count={'tokens': 3})
     
-    # Pass in the ElmoTokenEmbedder instance instead
     embedder = BasicTextFieldEmbedder({"tokens": elmo_embedder})
 
-    # The dimension of the ELMo embedding will be 2 x [size of LSTM hidden states]
     elmo_embedding_dim = 256
     lstm = PytorchSeq2VecWrapper(
         torch.nn.LSTM(elmo_embedding_dim, HIDDEN_DIM, batch_first=True))
